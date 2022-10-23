@@ -28,3 +28,8 @@ Editing an existing user:
 
 Deleting an existing user:
 <img width="613" alt="צילום מסך_מחיקה שם מהרשימה" src="https://user-images.githubusercontent.com/99870582/197401053-e40dc9f1-692d-4d35-a654-bfe33927590c.png">
+
+
+##I did the required functions, but I had a bug in the connection between the server side and the client side in some of the functions, so they don't work
+I tried to solve the bug for a long time but without success
+I will try to solve it even for myself to make it perfect
