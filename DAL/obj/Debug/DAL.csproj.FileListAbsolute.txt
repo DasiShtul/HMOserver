@@ -1,0 +1,15 @@
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\DAL.pdb
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\EntityFramework.dll
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\Common.pdb
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\EntityFramework.xml
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\obj\Debug\DAL.pdb
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\DAL.dll.config
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\DAL.dll
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\Common.dll
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\bin\Debug\Common.dll.config
+C:\Users\S786\Desktop\dasi\HMOserver\DAL\obj\Debug\DAL.dll

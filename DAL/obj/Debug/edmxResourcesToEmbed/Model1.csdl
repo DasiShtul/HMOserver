@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_HMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Maker_tbl">
+    <Key>
+      <PropertyRef Name="MakerId" />
+    </Key>
+    <Property Name="MakerId" Type="Int32" Nullable="false" />
+    <Property Name="MakerName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Vaccination_tbl" Relationship="Self.FK_Vaccination_tbl_Maker_tbl" FromRole="Maker_tbl" ToRole="Vaccination_tbl" />
+  </EntityType>
+  <EntityType Name="Patients_tbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="HouseNumber" Type="Int32" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="MobilePhone" Type="Int32" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="StatusCOVID19_tbl" Relationship="Self.FK_StatusCOVID19_tbl_Patients_tbl" FromRole="Patients_tbl" ToRole="StatusCOVID19_tbl" />
+    <NavigationProperty Name="Vaccination_tbl" Relationship="Self.FK_Vaccination_tbl_Patients_tbl" FromRole="Patients_tbl" ToRole="Vaccination_tbl" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vaccination_tbl">
+    <Key>
+      <PropertyRef Name="VaccinationId" />
+    </Key>
+    <Property Name="VaccinationId" Type="Int32" Nullable="false" />
+    <Property Name="MakerId" Type="Int32" />
+    <Property Name="PatientId" Type="Int32" />
+    <Property Name="VaccinationDate" Type="DateTime" Precision="0" />
+    <Property Name="VaccinatioNumber" Type="Int32" />
+    <NavigationProperty Name="Maker_tbl" Relationship="Self.FK_Vaccination_tbl_Maker_tbl" FromRole="Vaccination_tbl" ToRole="Maker_tbl" />
+    <NavigationProperty Name="Patients_tbl" Relationship="Self.FK_Vaccination_tbl_Patients_tbl" FromRole="Vaccination_tbl" ToRole="Patients_tbl" />
+  </EntityType>
+  <EntityType Name="StatusCOVID19_tbl">
+    <Key>
+      <PropertyRef Name="PatientId" />
+    </Key>
+    <Property Name="PatientId" Type="Int32" Nullable="false" />
+    <Property Name="Positive" Type="DateTime" Precision="0" />
+    <Property Name="Recovery" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Patients_tbl" Relationship="Self.FK_StatusCOVID19_tbl_Patients_tbl" FromRole="StatusCOVID19_tbl" ToRole="Patients_tbl" />
+  </EntityType>
+  <Association Name="FK_Vaccination_tbl_Maker_tbl">
+    <End Role="Maker_tbl" Type="Self.Maker_tbl" Multiplicity="0..1" />
+    <End Role="Vaccination_tbl" Type="Self.Vaccination_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maker_tbl">
+        <PropertyRef Name="MakerId" />
+      </Principal>
+      <Dependent Role="Vaccination_tbl">
+        <PropertyRef Name="MakerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusCOVID19_tbl_Patients_tbl">
+    <End Role="Patients_tbl" Type="Self.Patients_tbl" Multiplicity="1" />
+    <End Role="StatusCOVID19_tbl" Type="Self.StatusCOVID19_tbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Patients_tbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StatusCOVID19_tbl">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vaccination_tbl_Patients_tbl">
+    <End Role="Patients_tbl" Type="Self.Patients_tbl" Multiplicity="0..1" />
+    <End Role="Vaccination_tbl" Type="Self.Vaccination_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patients_tbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vaccination_tbl">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_HMOEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Maker_tbl" EntityType="Self.Maker_tbl" />
+    <EntitySet Name="Patients_tbl" EntityType="Self.Patients_tbl" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Vaccination_tbl" EntityType="Self.Vaccination_tbl" />
+    <EntitySet Name="StatusCOVID19_tbl" EntityType="Self.StatusCOVID19_tbl" />
+    <AssociationSet Name="FK_Vaccination_tbl_Maker_tbl" Association="Self.FK_Vaccination_tbl_Maker_tbl">
+      <End Role="Maker_tbl" EntitySet="Maker_tbl" />
+      <End Role="Vaccination_tbl" EntitySet="Vaccination_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusCOVID19_tbl_Patients_tbl" Association="Self.FK_StatusCOVID19_tbl_Patients_tbl">
+      <End Role="Patients_tbl" EntitySet="Patients_tbl" />
+      <End Role="StatusCOVID19_tbl" EntitySet="StatusCOVID19_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vaccination_tbl_Patients_tbl" Association="Self.FK_Vaccination_tbl_Patients_tbl">
+      <End Role="Patients_tbl" EntitySet="Patients_tbl" />
+      <End Role="Vaccination_tbl" EntitySet="Vaccination_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

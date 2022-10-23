@@ -1,0 +1,7 @@
+C:\Users\S786\Desktop\dasi\HMOserver\Common\bin\Debug\Common.pdb
+C:\Users\S786\Desktop\dasi\HMOserver\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\S786\Desktop\dasi\HMOserver\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\S786\Desktop\dasi\HMOserver\Common\obj\Debug\Common.pdb
+C:\Users\S786\Desktop\dasi\HMOserver\Common\bin\Debug\Common.dll.config
+C:\Users\S786\Desktop\dasi\HMOserver\Common\bin\Debug\Common.dll
+C:\Users\S786\Desktop\dasi\HMOserver\Common\obj\Debug\Common.dll

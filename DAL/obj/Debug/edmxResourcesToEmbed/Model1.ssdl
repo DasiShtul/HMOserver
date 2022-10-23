@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_HMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Maker_tbl">
+    <Key>
+      <PropertyRef Name="MakerId" />
+    </Key>
+    <Property Name="MakerId" Type="int" Nullable="false" />
+    <Property Name="MakerName" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Patients_tbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" MaxLength="20" />
+    <Property Name="LastName" Type="nchar" MaxLength="20" />
+    <Property Name="City" Type="nchar" MaxLength="20" />
+    <Property Name="Street" Type="nchar" MaxLength="20" />
+    <Property Name="HouseNumber" Type="int" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="MobilePhone" Type="int" />
+    <Property Name="DateOfBirth" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_HMO.dbo.StatusCOVID19_tbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StatusCOVID19_tbl">
+    <Key>
+      <PropertyRef Name="PatientId" />
+    </Key>
+    <Property Name="PatientId" Type="int" Nullable="false" />
+    <Property Name="Positive" Type="date" />
+    <Property Name="Recovery" Type="date" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Vaccination_tbl">
+    <Key>
+      <PropertyRef Name="VaccinationId" />
+    </Key>
+    <Property Name="VaccinationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MakerId" Type="int" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="VaccinationDate" Type="date" />
+    <Property Name="VaccinatioNumber" Type="int" />
+  </EntityType>
+  <Association Name="FK_StatusCOVID19_tbl_Patients_tbl">
+    <End Role="Patients_tbl" Type="Self.Patients_tbl" Multiplicity="1" />
+    <End Role="StatusCOVID19_tbl" Type="Self.StatusCOVID19_tbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Patients_tbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StatusCOVID19_tbl">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vaccination_tbl_Maker_tbl">
+    <End Role="Maker_tbl" Type="Self.Maker_tbl" Multiplicity="0..1" />
+    <End Role="Vaccination_tbl" Type="Self.Vaccination_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maker_tbl">
+        <PropertyRef Name="MakerId" />
+      </Principal>
+      <Dependent Role="Vaccination_tbl">
+        <PropertyRef Name="MakerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vaccination_tbl_Patients_tbl">
+    <End Role="Patients_tbl" Type="Self.Patients_tbl" Multiplicity="0..1" />
+    <End Role="Vaccination_tbl" Type="Self.Vaccination_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patients_tbl">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vaccination_tbl">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_HMOModelStoreContainer">
+    <EntitySet Name="Maker_tbl" EntityType="Self.Maker_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patients_tbl" EntityType="Self.Patients_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vaccination_tbl" EntityType="Self.Vaccination_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusCOVID19_tbl" EntityType="Self.StatusCOVID19_tbl" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StatusCOVID19_tbl].[PatientId] AS [PatientId], 
+    [StatusCOVID19_tbl].[Positive] AS [Positive], 
+    [StatusCOVID19_tbl].[Recovery] AS [Recovery]
+    FROM [dbo].[StatusCOVID19_tbl] AS [StatusCOVID19_tbl]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_StatusCOVID19_tbl_Patients_tbl" Association="Self.FK_StatusCOVID19_tbl_Patients_tbl">
+      <End Role="Patients_tbl" EntitySet="Patients_tbl" />
+      <End Role="StatusCOVID19_tbl" EntitySet="StatusCOVID19_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vaccination_tbl_Maker_tbl" Association="Self.FK_Vaccination_tbl_Maker_tbl">
+      <End Role="Maker_tbl" EntitySet="Maker_tbl" />
+      <End Role="Vaccination_tbl" EntitySet="Vaccination_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vaccination_tbl_Patients_tbl" Association="Self.FK_Vaccination_tbl_Patients_tbl">
+      <End Role="Patients_tbl" EntitySet="Patients_tbl" />
+      <End Role="Vaccination_tbl" EntitySet="Vaccination_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

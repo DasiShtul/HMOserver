@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="69c955c8b1974258bfe4a2f713051dd2" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_HMOModel.Maker_tbl" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_HMOModel.Patients_tbl" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_HMOModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_HMOModel.Vaccination_tbl" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_HMOModel.StatusCOVID19_tbl" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="DB_HMOModel.FK_Vaccination_tbl_Maker_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_HMOModel.FK_StatusCOVID19_tbl_Patients_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_HMOModel.FK_Vaccination_tbl_Patients_tbl" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
